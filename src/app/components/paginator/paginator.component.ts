@@ -13,6 +13,7 @@ import {
   templateUrl: './paginator.component.html',
 })
 export class PaginatorComponent implements OnChanges {
+
   @Input() totalPages!: number;
   @Input() page!: number;
   @Output() pageSelectedEvent: EventEmitter<number> =

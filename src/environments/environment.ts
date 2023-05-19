@@ -1,16 +1,6 @@
-const API_DOMAIN = 'https://swapi.dev/api';
-const ASSETS_DOMAIN = 'https://starwars-visualguide.com/assets/img';
-
 export const environment = {
   production: false,
-  resources: `${API_DOMAIN}/`,
-  assets: `${ASSETS_DOMAIN}/`,
-  films: `${API_DOMAIN}/films`,
-  people: `${API_DOMAIN}/people`,
-  planets: `${API_DOMAIN}/planets/`,
-  species: `${API_DOMAIN}/species/`,
-  starships: `${API_DOMAIN}/starships/`,
-  vehicles: `${API_DOMAIN}/vehicles/`,
-  assetCharacter: `${ASSETS_DOMAIN}/characters/`,
-  assetFilms: `${ASSETS_DOMAIN}/films/`,
+  resources: `https://swapi.dev/api/`,
+  assets: `https://starwars-visualguide.com/assets/img/`,
+  defaultPlaceholder: '/assets/placeholder.jpg'
 };

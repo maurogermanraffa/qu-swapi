@@ -1,63 +1,54 @@
-<div>
-  <div class="search">
-    <div class="headboard">
-      <wb-headboard [title]="'Search'" [subtitle]="'Star Wars finder'">
-      </wb-headboard>
-    </div>
+<div class="search">
+  <div class="headboard">
+    <wb-headboard [title]="'Star Wars finder'">
+    </wb-headboard>
+  </div>
 
-    <ng-container *ngIf="resources$ | async as resources">
-      <div class="container-fluid search">
-        <div class="row">
-          <div class="col-sm-8">
-            <wb-search-text [isDisabled]="loadingPage" [errorMessage]="showErrorMessage"
-              (searchEvent)="onChangeResults(1,undefined,$event)">
-            </wb-search-text>
-          </div>
-          <div class="col-sm-4 resources-row">
-            <div ngbDropdown [placement]="isMobile ? 'button' : 'top-end' " class="d-inline-block resources">
-              <button [disabled]="loadingPage" type="button" class="btn btn-outline-primary resourcesButton"
-                id="dropdownBasic2" ngbDropdownToggle>
-                {{resourceSelected.name }} </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                <button ngbDropdownItem *ngFor="let resource of resources" (click)="onChangeResults(1,resource, '')">
-                  {{ resource.name }} </button>
-              </div>
+  <ng-container *ngIf="resources$ | async as resources">
+    <div class="container-fluid search">
+      <div class="row">
+        <div class="col-sm-8">
+          <wb-search-text [isDisabled]="loadingPage" [errorMessage]="showErrorMessage"
+            (searchEvent)="onChangeResults(1,undefined,$event)">
+          </wb-search-text>
+        </div>
+        <div *ngIf="resources" class="col-sm-4 resources-row">
+          <div ngbDropdown placement="button" class="d-inline-block resources">
+            <button [disabled]="loadingPage" type="button"
+              class="btn btn-outline-primary resourcesButton text-capitalize" id="dropdownBasic2" ngbDropdownToggle>
+              {{resourceSelected.name }} </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+              <button class="text-capitalize" ngbDropdownItem *ngFor="let resource of resources"
+                (click)="onChangeResults(1,resource)">
+                {{ resource.name }} </button>
             </div>
           </div>
         </div>
       </div>
-    </ng-container>
+    </div>
+  </ng-container>
 
-
-
-    <ng-container *ngIf="results$ | async as results else skeletonTemplate">
-      <div class="featured-container">
-        <div class="featured-items">
-          <div class="featured" *ngFor="let result of results">
-            <wb-card [result]="result" (clickCard)="clickCard($event)"></wb-card>
-          </div>
+  <ng-container *ngIf="results$ | async as results else skeletonTemplate">
+    <div class="featured-container">
+      <div class="featured-items">
+        <div class="featured" *ngFor="let result of results">
+          <wb-card [result]="result"></wb-card>
         </div>
       </div>
-    </ng-container>
-
-    <ng-template #skeletonTemplate>
-      <div class="featured-container">
-        <div class="featured-items">
-          <div class="featured" *ngFor="let item of loadingItems">
-            <wb-card [loading]="true"></wb-card>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-
-
-    <div *ngIf="results$ | async">
+    </div>
+    <div *ngIf="results">
       <wb-paginator [totalPages]="totalPages" [page]="nroPage" (pageSelectedEvent)="onChangeResults($event)">
       </wb-paginator>
     </div>
+  </ng-container>
 
-  </div>
-
-
-   
+  <ng-template #skeletonTemplate>
+    <div class="featured-container">
+      <div class="featured-items">
+        <div class="featured" *ngFor="let item of loadingItems">
+          <wb-card [loading]="true"></wb-card>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>

@@ -1,19 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize, map, switchMap, tap } from 'rxjs/operators';
-import { Resource, ResourceDetail, SWApiService } from '../../core/shared/services/swapi/swapi.service';
+import { SWApiService } from '../../core/shared/services/swapi/swapi.service';
 import { Observable, Subject } from 'rxjs';
-import { NavigatorService } from 'src/app/core/shared/services/navigation/navigator.service';
+import { Resource, Result, ResourceDetail } from 'src/app/core/shared/interfaces/swapi.interfaces';
 
-export interface Result {
-  created: string;
-  edited: string;
-  films: string[];
-  id: string;
-  imagePath: string;
-  name: string;
-  url: string;
-}
 
 export interface ChangeEvent {
   page: number;
@@ -28,43 +19,42 @@ export interface ChangeEvent {
 })
 export class SearchComponent implements OnInit {
 
-  isMobile: boolean = false;
   nroPage = 1;
   totalPages = 0;
   enableNextPage: boolean = false;
   enablePreviusPage: boolean = false;
 
+  searchText: string = '';
   loadingPage: boolean = true;
   loadingItems: number[] = Array(10)
     .fill(0)
     .map((x, i) => i + 1);
 
 
-
   showErrorMessage = false;
-  resources$!: Observable<Resource[]>;
+  resources$?: Observable<Resource[]>
   resourceSelected!: Resource;
 
-  private categorySubject = new Subject<ChangeEvent>();
-  categorySelected$ = this.categorySubject.asObservable();
+  private dropdownSubject = new Subject<ChangeEvent>();
+  resourceSelected$ = this.dropdownSubject.asObservable();
   results$!: Observable<Result[]>;
 
   constructor(
     private swApiService: SWApiService,
-    private router: Router,
-    private navigatorService: NavigatorService
+    private router: Router
   ) {
-    this.isMobile = this.navigatorService.isMobile;
+
+
   }
 
   ngOnInit(): void {
     this.resources$ = this.swApiService.getResources().pipe(
       tap((resources: Resource[]) => {
-        this.resourceSelected = resources[0];
+        this.resourceSelected = resources.filter(res => res.name === 'planets')[0]; // Suggestion
         this.onChangeResults(1);
       })
     );
-    this.results$ = this.categorySelected$.pipe(
+    this.results$ = this.resourceSelected$.pipe(
       tap((changeEvent: ChangeEvent) => {
         this.resourceSelected = changeEvent.resource
         this.loadingPage = true
@@ -84,10 +74,11 @@ export class SearchComponent implements OnInit {
   }
 
   onChangeResults(page: number, resource?: Resource, searchText?: string): void {
-    this.categorySubject.next({
+    this.searchText = searchText ?? this.searchText;
+    this.dropdownSubject.next({
       page: page ?? 1,
       resource: resource ?? this.resourceSelected,
-      searchText: searchText ?? ''
+      searchText: this.searchText
     });
   }
 
@@ -110,11 +101,5 @@ export class SearchComponent implements OnInit {
     }
     return 1;
   }
-
-
-  clickCard(character: Result): void {
-    this.router.navigate([String(`/search/character/${character.id}`)]);
-  }
-
 
 }

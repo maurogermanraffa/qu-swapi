@@ -1,6 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Result } from 'src/app/pages/search/search.component';
+import { Component, Input } from '@angular/core';
+import { Result } from 'src/app/core/shared/interfaces/swapi.interfaces';
+import { environment } from 'src/environments/environment';
 
+export interface response {
+  content: any
+  url: string
+}
 @Component({
   selector: 'wb-card',
   styleUrls: ['./card.component.scss'],
@@ -9,14 +14,9 @@ import { Result } from 'src/app/pages/search/search.component';
 export class CardComponent {
   @Input() result!: Result;
   @Input() loading!: boolean;
-  @Output() clickCard: EventEmitter<Result> = new EventEmitter<Result>();
-
-  onClick(): void {
-    this.clickCard.emit(this.result);
-  }
 
 
   handleImageError(event: any): void {
-    event.target.src = '/assets/placeholder.jpg'
+    event.target.src = environment.defaultPlaceholder;
   }
 }

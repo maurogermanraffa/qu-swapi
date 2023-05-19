@@ -39,7 +39,6 @@ export class SWApiService {
     }
     return this.http.get<any>(resource.url, { params: params }).pipe(
       map((response: ResourceDetail) => {
-        console.log(response.results[0]);
         response.results.forEach((result: Result) => {
           result.id = result.url.split('/')[5];
           if (resource.name === 'people') resource.name = 'characters'; // HardRule because assets site change people to characters
@@ -54,22 +53,6 @@ export class SWApiService {
       })
     );
   }
-
-
-
-  getItemResource(url: string): Observable<any> {
-    return this.http.get<any>(url).pipe(
-      map((response: any) => {
-        console.log(response);
-        return response;
-      }),
-      catchError((err: any) => {
-        console.error(err);
-        return of(err)
-      })
-    );
-  }
-
 
 }
 

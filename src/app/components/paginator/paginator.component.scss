@@ -3,6 +3,10 @@
   justify-content: center;
 
   .pagination {
+
+    --bs-pagination-active-border-color: black;
+    --bs-pagination-color: #ad7d37;
+
     .page-item {
       cursor: pointer;
       width: 48px;
@@ -10,8 +14,8 @@
     }
 
     .active {
-      background-color: #0a58ca;
-      color: #dee2e6;
+      background-color: #334e30;
+      color: #ad7d37;
     }
 
     .page-number {

@@ -1,3 +1,9 @@
 .container-fluid {
     margin-top: 80px;
 }
+
+@media (max-width: 768px) {
+    .container-fluid {
+        margin-top: 24px;
+    }
+}

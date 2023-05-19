@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { finalize, map, switchMap, tap } from 'rxjs/operators';
 import { Resource, ResourceDetail, SWApiService } from '../../core/shared/services/swapi/swapi.service';
 import { Observable, Subject } from 'rxjs';
+import { NavigatorService } from 'src/app/core/shared/services/navigation/navigator.service';
 
 export interface Result {
   created: string;
@@ -27,7 +28,7 @@ export interface ChangeEvent {
 })
 export class SearchComponent implements OnInit {
 
-
+  isMobile: boolean = false;
   nroPage = 1;
   totalPages = 0;
   enableNextPage: boolean = false;
@@ -51,7 +52,10 @@ export class SearchComponent implements OnInit {
   constructor(
     private swApiService: SWApiService,
     private router: Router,
-  ) { }
+    private navigatorService: NavigatorService
+  ) {
+    this.isMobile = this.navigatorService.isMobile;
+  }
 
   ngOnInit(): void {
     this.resources$ = this.swApiService.getResources().pipe(

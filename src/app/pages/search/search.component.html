@@ -13,8 +13,8 @@
               (searchEvent)="onChangeResults(1,undefined,$event)">
             </wb-search-text>
           </div>
-          <div class="col-sm-4">
-            <div ngbDropdown placement="top-end" class="d-inline-block resources">
+          <div class="col-sm-4 resources-row">
+            <div ngbDropdown [placement]="isMobile ? 'button' : 'top-end' " class="d-inline-block resources">
               <button [disabled]="loadingPage" type="button" class="btn btn-outline-primary resourcesButton"
                 id="dropdownBasic2" ngbDropdownToggle>
                 {{resourceSelected.name }} </button>

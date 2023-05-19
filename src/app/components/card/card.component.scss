@@ -8,6 +8,17 @@
     margin: 8px;
   }
 
+  .image-container {
+    background-color: black;
+    border: 1px solid #000000;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    height: 200px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+  }
+
   .name {
     color: #ad7d37;
     margin: 8px;
@@ -15,6 +26,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .loading {
     width: 126px !important;
     height: 200px;

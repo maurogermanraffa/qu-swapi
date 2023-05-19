@@ -30,6 +30,15 @@
 
 .resourcesButton {
   height: 42px;
+  --bs-btn-color: #ad7d37;
+  --bs-btn-border-color: #ad7d37;
+  --bs-btn-hover-bg: #ad7d37;
+  --bs-btn-hover-border-color: #ad7d37;
+  --bs-btn-active-bg: #ad7d37;
+  --bs-btn-active-border-color: #ad7d37;
+  --bs-btn-disabled-color: #ad7d37;
+  --bs-btn-disabled-border-color: #ad7d37;
+  background-color: #334e30;
 }
 
 @media (min-width: 768px) {
@@ -37,6 +46,24 @@
     .featured-items {
       justify-content: center;
       max-width: inherit;
+    }
+  }
+
+}
+
+
+@media (max-width: 767px) {
+
+
+  .featured-container {
+    margin-top: 20px;
+  }
+
+  .resources-row {
+    text-align: center;
+
+    .resources {
+      margin: 0 auto;
     }
   }
 }

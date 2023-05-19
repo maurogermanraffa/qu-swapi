@@ -1,0 +1,28 @@
+.navigation {
+  display: flex;
+  justify-content: center;
+
+  .pagination {
+    .page-item {
+      cursor: pointer;
+      width: 48px;
+      text-align: center;
+    }
+
+    .active {
+      background-color: #0a58ca;
+      color: #dee2e6;
+    }
+
+    .page-number {
+      cursor: pointer;
+      width: 32px;
+      text-align: center;
+    }
+
+    .disabled {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  }
+}

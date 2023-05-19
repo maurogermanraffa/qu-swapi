@@ -1,0 +1,14 @@
+<div class="search">
+  <div class="d-flex flex-column">
+    <div class="p-2">
+      <div class="input-group">
+        <input #textSearchInput type="search" class="form-control rounded inputSearch" placeholder="Search Character"
+          (search)="search()" [disabled]="isDisabled" aria-label="Search Character" aria-describedby="search-addon"
+          [class.input-error]="errorMessage" />
+      </div>
+    </div>
+    <div class="p-2 errorMessage">
+      <label *ngIf="errorMessage">No results found </label>
+    </div>
+  </div>
+</div>

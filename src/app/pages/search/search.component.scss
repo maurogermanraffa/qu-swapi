@@ -1,0 +1,42 @@
+.featured-container {
+  text-emphasis: center;
+  max-width: 950px;
+  margin: auto;
+
+  .featured-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0 auto;
+    max-width: 344px;
+    row-gap: 16px;
+  }
+
+  .featured {
+    width: 160px;
+    cursor: pointer;
+  }
+}
+
+.search {
+  max-width: 800px;
+  margin: auto;
+}
+
+.resources {
+  margin-top: 8px;
+}
+
+.resourcesButton {
+  height: 42px;
+}
+
+@media (min-width: 768px) {
+  .featured-container {
+    .featured-items {
+      justify-content: center;
+      max-width: inherit;
+    }
+  }
+}

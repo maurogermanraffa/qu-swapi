@@ -6,8 +6,6 @@ import {
   EventEmitter,
   ViewChild,
   ElementRef,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import {
@@ -16,7 +14,6 @@ import {
   filter,
   map,
 } from 'rxjs/operators';
-import { ChangeEvent } from 'src/app/pages/search/search.component';
 
 @Component({
   selector: 'wb-search-text',
@@ -32,13 +29,11 @@ export class SearchTextComponent implements OnInit {
   @ViewChild('textSearchInput', { static: true })
   textSearchInput!: ElementRef;
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
     fromEvent(this.textSearchInput.nativeElement, 'keyup')
       .pipe(
         map((event: any) => event.target.value),
-        filter((res) => res.length > 2 || res.length == 0),
+        filter((res: string) => res.length > 2 || res.length == 0),
         debounceTime(500),
         distinctUntilChanged()
       )
@@ -47,7 +42,7 @@ export class SearchTextComponent implements OnInit {
       });
   }
 
-  search() {
+  search(): void {
     this.searchEvent.emit(this.textSearchInput.nativeElement.value);
   }
 

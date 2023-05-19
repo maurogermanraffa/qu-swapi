@@ -11,7 +11,7 @@ export class CardComponent {
   @Input() loading!: boolean;
   @Output() clickCard: EventEmitter<Result> = new EventEmitter<Result>();
 
-  onClick() {
+  onClick(): void {
     this.clickCard.emit(this.result);
   }
 

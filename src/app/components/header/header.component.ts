@@ -17,7 +17,7 @@ export class HeaderComponent {
     this.isMobile = this.navigatorService.isMobile;
   }
 
-  onBackClick() {
+  onBackClick(): void {
     this._location.back();
   }
 }

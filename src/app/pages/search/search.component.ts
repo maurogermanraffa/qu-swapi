@@ -53,7 +53,7 @@ export class SearchComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.resources$ = this.swApiService.getResources().pipe(
       tap((resources: Resource[]) => {
         this.resourceSelected = resources[0];
@@ -88,7 +88,7 @@ export class SearchComponent implements OnInit {
   }
 
 
-  initPagination(data: ResourceDetail) {
+  initPagination(data: ResourceDetail): void {
     this.totalPages = Math.ceil(data.count / 10);
     this.enableNextPage = data.next ? true : false;
     this.enablePreviusPage = data.previous ? true : false;
@@ -108,7 +108,7 @@ export class SearchComponent implements OnInit {
   }
 
 
-  clickCard(character: Result) {
+  clickCard(character: Result): void {
     this.router.navigate([String(`/search/character/${character.id}`)]);
   }
 

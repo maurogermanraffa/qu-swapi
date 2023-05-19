@@ -12,14 +12,13 @@ import {
   styleUrls: ['./paginator.component.scss'],
   templateUrl: './paginator.component.html',
 })
-export class PaginatorComponent implements OnInit, OnChanges {
+export class PaginatorComponent implements OnChanges {
   @Input() totalPages!: number;
-  countPages!: number[];
   @Input() page!: number;
   @Output() pageSelectedEvent: EventEmitter<number> =
     new EventEmitter<number>();
 
-  ngOnInit() { }
+  countPages!: number[];
 
   ngOnChanges(): void {
     this.countPages = Array(this.totalPages)
@@ -27,17 +26,17 @@ export class PaginatorComponent implements OnInit, OnChanges {
       .map((x, i) => i + 1);
   }
 
-  nextPage() {
+  nextPage(): void {
     this.page++;
     this.pageSelectedEvent.emit(this.page);
   }
 
-  previusPage() {
+  previusPage(): void {
     this.page--;
     this.pageSelectedEvent.emit(this.page);
   }
 
-  especificPage(page: number) {
+  especificPage(page: number): void {
     this.page = page;
     this.pageSelectedEvent.emit(this.page);
   }

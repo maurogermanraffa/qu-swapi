@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search.component';
 import { SearchRoutingModule } from './search.routing';
 import { ComponentsModule } from '../../components/components.module';
-import { SharedModule } from 'src/app/core/shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({

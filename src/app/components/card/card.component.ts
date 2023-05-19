@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Result } from 'src/app/core/shared/interfaces/swapi.interfaces';
+import { Result } from 'src/app/shared/interfaces/swapi.interfaces';
 import { environment } from 'src/environments/environment';
 
 export interface response {

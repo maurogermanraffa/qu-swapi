@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, scheduled } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from '../../../../../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { Resource, Result, ResourceDetail } from '../../interfaces/swapi.interfaces';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({

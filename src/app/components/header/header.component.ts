@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
-import { NavigatorService } from 'src/app/core/shared/services/navigation/navigator.service';
+import { NavigatorService } from 'src/app/shared/services/navigation/navigator.service';
 
 @Component({
   selector: 'wb-header',

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize, map, switchMap, tap } from 'rxjs/operators';
-import { SWApiService } from '../../core/shared/services/swapi/swapi.service';
+import { SWApiService } from '../../shared/services/swapi/swapi.service';
 import { Observable, Subject } from 'rxjs';
-import { Resource, Result, ResourceDetail } from 'src/app/core/shared/interfaces/swapi.interfaces';
+import { Resource, Result, ResourceDetail } from 'src/app/shared/interfaces/swapi.interfaces';
 
 
 export interface ChangeEvent {
